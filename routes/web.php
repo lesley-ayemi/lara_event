@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,7 @@ Route::get('dashboard', function(){
 
     return view('admin.dashboard');
 
-});
+})->middleware('auth');
 
 
 Route::group(['frontend'], function(){
@@ -47,3 +48,32 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+// Route::namespace('Admin')->prefix('admin')->group(function(){
+
+// Route::resource('/users', 'UsersController', ['except' => ['show', 'store', 'create']]);
+
+
+
+// });
+
+// Route::resource('admin/users', 'AdminUsersController', ['names'=>[
+
+//     'index'=>'admin.users.index',
+//     'create'=>'admin.users.create',
+//     'store'=>'admin.users.store',
+//     'edit'=>'admin.users.edit'
+
+
+// ]]);
+
+Route::resource('admin/user', 'AdminUsersController', ['names' =>[
+    'index'=>'admin.users.index',
+    'create'=>'admin.users.create',
+    'edit'=>'admin.users.edit',
+    'store'=>'admin.users.store',
+    'delete'=>'admin.users.destroy',
+    
+]]);
