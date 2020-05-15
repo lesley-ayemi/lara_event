@@ -69,11 +69,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // ]]);
 
-Route::resource('admin/user', 'AdminUsersController', ['names' =>[
+Route::resource('admin/users', 'AdminUsersController', ['names' =>[
     'index'=>'admin.users.index',
     'create'=>'admin.users.create',
     'edit'=>'admin.users.edit',
     'store'=>'admin.users.store',
     'delete'=>'admin.users.destroy',
+    // 'delete'=>'admin.users.delete',
     
 ]]);
+
+// Route::get('admin/users/delete/{id}', 'AdminUsersController@delete');

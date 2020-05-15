@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\AdminUsersRequest;
 
 class AdminUsersController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $users = User::paginate(10);
 
         return view('admin.users.index', compact('users'));
     }
@@ -27,7 +28,9 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+    
+        $roles = Role::pluck('name', 'id')->all();
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -36,9 +39,22 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminUsersRequest $request)
     {
-        //
+        if(trim($request->password) == ''){
+
+            $input = $request->except('password');
+
+        } else{
+            $input = $request->all();
+            $input['password']= bcrypt($request->password);
+
+        }
+
+        User::create($input);
+
+        return redirect('/admin/users');
+
     }
 
     /**
@@ -87,7 +103,7 @@ class AdminUsersController extends Controller
         }
         $user->update($input);
         // return $request->all();
-        return redirect()->back();
+        return redirect('/admin/users');
     }
 
     /**
@@ -96,9 +112,13 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, $request)
+    public function destroy($id)
     {
-        // $user = User::findOrFail($id)->delete(); 
-        return $request->all();
+        $user = User::findOrFail($id); 
+        // dd($user);
+        return "it works";
+        // return view('admin.users.index');
     }
+
 }
+

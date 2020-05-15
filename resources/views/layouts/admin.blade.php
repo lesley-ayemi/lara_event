@@ -254,6 +254,7 @@
                         </a>
                         <ul aria-expanded="false">
                         <li><a href="{{route('admin.users.index')}}">All Users</a></li>
+                        <li><a href="{{route('admin.users.create')}}">Create User</a></li>
                         </ul>
                     </li>
                     <li class="nav-label">Apps</li>

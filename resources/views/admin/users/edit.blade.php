@@ -68,15 +68,27 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                                {{-- <div class="form-group "> --}}
+                                    <div class="btn-group">
+                                        <div class="col-lg-12">
+                                        {!! Form::submit('Update', ['class'=>'btn btn-primary btn-lg']) !!}
+                                        </div>
+                                        
+                                        {!! Form::close() !!}
 
-                                    <div class="col-lg-8 ml-auto">
-                                    {!! Form::submit('Update', ['class'=>'btn btn-primary']) !!}
+                                        {{-- update form end  --}}
+                                
+                                        {{-- Delete form Start  --}}
+
+                                        {!! Form::open(['method' =>'DELETE', 'action'=>['AdminUsersController@destroy', $user->id]]) !!}
+                                        <div class="col-lg-12">
+                                        {!! Form::submit('Delete', ['class'=>'btn btn-danger btn-lg']) !!}
+                                        </div>
                                     </div>
-        
-                                </div>
-                     
-                        {!! Form::close() !!}
+
+                                {{-- </div> --}}
+
+
 
 
 
@@ -86,6 +98,17 @@
         </div>
     </div>
 </div>
+
+{{-- <div class="form-group row">
+
+    <div class="col-lg-8 ml-auto">
+
+
+    </div>
+    {!! Form::close() !!}
+
+
+</div> --}}
 
 
     

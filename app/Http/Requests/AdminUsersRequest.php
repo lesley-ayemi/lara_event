@@ -26,7 +26,10 @@ class AdminUsersRequest extends FormRequest
         return [
             'name'=>'required',
             'email'=>'required',
-            // 'password'=>'sometimes|required',
+            'password'=>'sometimes|required',
+            'phone_number'=>'required',
+            'role_id'=>'required',
+            'is_active'=>'required',
 
         ];
     }

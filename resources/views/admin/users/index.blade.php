@@ -5,6 +5,7 @@
 
 
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
@@ -18,6 +19,8 @@
                                     <th>ID</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Roles</th>
+                                    <th>Status</th>
                                     <th>Phone Number</th>
                                     <th>Registered Date</th>
                                     <th>Updated At</th>
@@ -34,7 +37,9 @@
                                 <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->phone_number}}</td>
+                                    <td>{{$user->role->name ? $user->role->name : 'NO Role'}}</td>
+                                    <td>{{$user->is_active == 1 ? 'Active': 'Not Active'}}</td>
+                                    <td> <span>+234</span> {{$user->phone_number}}</td>
                                     <td>{{$user->created_at->diffForHumans()}}</td>
                                     <td>{{$user->updated_at->diffForHumans()}}</td>
                                     <td>
@@ -42,17 +47,67 @@
                                     <i class="fa fa-edit text-red fa-lg"></i>
                                     </a>
                                     /
-                                <a class="sweetalert m-t-30" href="#">
-                                        <i class="fa fa-trash text-dark fa-lg"></i>
+                                    {{-- @if ($users) --}}
+                                        
+
+                                    {{-- @foreach ($users as $user ) --}}
+
+                                    {{-- <a href="#myModal" class="trigger-btn" data-toggle="modal"> --}}
+                                    <a href="{{route('admin.users.edit', $user->id)}}">
+
+                                    <i  class="fa fa-trash text-dark fa-lg"></i>
                                     </a>
+                                    {{-- @endif --}}
+
+                                    {{-- @endforeach --}}
+
                                     {{-- <button class="btn btn-warning btn sweet-success-cancel">
                                         <i class="fa fa-trash text-dark fa-lg"></i>
 
                                     </button> --}}
 
+                                    <!-- Modal HTML Start-->
+
+                                    <div id="myModal" class="modal fade"  >
+
+                                        <div class="modal-dialog modal-confirm">
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">			
+                                                    <h4 class="modal-title">Are you sure?</h4>	
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                {{-- @if ($users) --}}
+
+                                                    
+                                                    
+                                                <div class="modal-body text-center">
+                                                    <i style="color: yellow" class="fa fa-warning fa-3x"></i>
+                                                <p class="text-dark">Do You Really Want To Delete <span>{{$user->name}}</span> ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+
+                                                {!! Form::open(['method'=>'DELETE', 'action'=> ['AdminUsersController@destroy', $user->id]]) !!}
+                                                    
+                                                    {!! Form::submit('Cancel', ['class'=>'btn btn-info', 'data-dismiss'=>'modal']) !!}
+                                                    {!! Form::submit('Delete', ['class'=>'btn btn-danger']) !!}
+                                                    {!! Form::close() !!}
+                                                </div>
+
+                                                {{-- @endif --}}
+
+                                            </div>
+
+                                        </div>
+                                        
+                                    </div> 
+
+                                    <!-- Modal HTML End-->
+
                                     
                                     </td>
                                 </tr>
+
                             
                             </tbody>
                             @endforeach
@@ -69,30 +124,7 @@
         </div>
     </div>
 </div>
-{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> --}}
-{{-- <script>
-    $('#try').click(function(){
 
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-        if (result.value) {
-            Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-            )
-        }
-        })
-
-    });
-</script> --}}
-
+    
     
 @endsection
