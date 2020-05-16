@@ -39,7 +39,7 @@
                                                 <td class="color-primary">{{$post->body}}</td>
                                                 <td><span class="badge badge-danger px-2">{{$post->category->name}}</span>
                                                 <td>{{$post->created_at ? $post->created_at->diffForHumans() : 'No Date'}}</td>
-                                                <td>{{$post->update_at ? $post->updated_at : 'No Date'}}</td>
+                                                <td>{{$post->updated_at ? $post->updated_at->diffForHumans() : 'No Date'}}</td>
                                                 <td>
                                                     <a class="badge badge-success px-2" href="">
                                                         Click Here

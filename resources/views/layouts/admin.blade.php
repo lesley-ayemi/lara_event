@@ -46,10 +46,10 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="#">
-                    <b class="logo-abbr"><img src="{{asset('images/logo.png')}}" alt=""> </b>
-                    <span class="logo-compact"><img src="{{asset('images/logo-compact.png')}}" alt=""></span>
+                    <b class="logo-abbr text-white">OS</b>
+                    <span class="logo-compact"><img src="#" alt=""></span>
                     <span class="brand-title">
-                        <img src="{{asset('images/logo-text.png')}}" alt="">
+                       <p style="text-align: center; color: white" class="text-uppercase"> <strong>Zorin</strong>  <i style="color: black; align-content: center " class="fa fa-linux"></i></p> 
                     </span>
                 </a>
             </div>
