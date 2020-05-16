@@ -19,11 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('dashboard', function(){
-
-    return view('admin.dashboard');
-
-})->middleware('auth');
+Route::get('dashboard', 'AdminDashboardController@index');;
 
 
 Route::group(['frontend'], function(){
@@ -79,4 +75,12 @@ Route::resource('admin/users', 'AdminUsersController', ['names' =>[
     
 ]]);
 
-// Route::get('admin/users/delete/{id}', 'AdminUsersController@delete');
+
+Route::resource('admin/posts', 'AdminPostsController', ['names'=>[
+    'index'=>'admin.posts.index',
+    'create'=>'admin.posts.create',
+    'edit'=>'admin.posts.edit',
+    'update'=>'admin.posts.update',
+    'delete'=>'admin.posts.delete',
+]]);
+
