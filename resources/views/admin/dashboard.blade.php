@@ -7,43 +7,42 @@
         <div class="col-lg-3 col-sm-6">
             <div class="card gradient-1">
                 <div class="card-body">
+                <a href="{{url('admin/users')}}">
                     <h3 class="card-title text-white">Registered Users</h3>
                     <div class="d-inline-block">
-                        {{-- @if ($users) --}}
-                            
-                        {{-- @foreach ($users as $user) --}}
                     <h2 class="text-white">{{$usersCount ? $usersCount : 'No Users'}}</h2>
-                            
-                        {{-- @endforeach --}}
-                        {{-- @endif --}}
-
-                        <p class="text-white mb-0">Jan - March 2019</p>
+                    <p class="text-white mb-0">Jan - March 2019</p>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+                </a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-sm-6">
             <div class="card gradient-2">
                 <div class="card-body">
+                <a href="{{url('admin/posts')}}">
                     <h3 class="card-title text-white">All Post</h3>
                     <div class="d-inline-block">
                     <h2 class="text-white">{{$postCount ? $postCount : 'No Posts Yet'}}</h2>
                         <p class="text-white mb-0">Jan - March 2019</p>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-book"></i></span>
+                </a>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-sm-6">
             <div class="card gradient-3">
                 <div class="card-body">
-                    <h3 class="card-title text-white">New Customers</h3>
+                <a href="{{url('admin/categories')}}">
+                    <h3 class="card-title text-white">All Categories</h3>
                     <div class="d-inline-block">
-                        <h2 class="text-white">4565</h2>
+                    <h2 class="text-white">{{$categoryCount ? $categoryCount : 'No Categories'}}</h2>
                         <p class="text-white mb-0">Jan - March 2019</p>
                     </div>
                     <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+                </a>
                 </div>
             </div>
         </div>

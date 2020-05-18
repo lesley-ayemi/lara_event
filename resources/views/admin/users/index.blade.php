@@ -3,6 +3,14 @@
 
 @section('content')
 
+<div class="row page-titles mx-0">
+    <div class="col p-md-0">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Users</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">All Users</a></li>
+        </ol>
+    </div>
+</div>
 
 
 
@@ -35,10 +43,10 @@
                                         
                                 <tr>
                                 <td>{{$user->id}}</td>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->name}}<i style="color: green; margin: 3px" class="fa fa-user"></i></td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->role->name ? $user->role->name : 'NO Role'}}</td>
-                                    <td>{{$user->is_active == 1 ? 'Active': 'Not Active'}}</td>
+                                    <td><span class="badge badge-primary px-2">{{$user->role->name ? $user->role->name : 'NO Role'}}</span></td>
+                                    <td><span class="badge badge-danger px-2">{{$user->is_active == 1 ? 'Active': 'Not Active'}}</span></td>
                                     <td> <span>+234</span> {{$user->phone_number}}</td>
                                     <td>{{$user->created_at->diffForHumans()}}</td>
                                     <td>{{$user->updated_at->diffForHumans()}}</td>

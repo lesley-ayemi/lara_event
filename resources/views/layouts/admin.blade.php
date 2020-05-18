@@ -274,7 +274,18 @@
                             {{-- <li><a href="./email-compose.html">Compose</a></li> --}}
                         </ul>
                     </li>
-                    <li class="nav-label ">Home Page Section</li>
+                    <li class="nav-label ">Category Section</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i style="color: deepskyblue" class="icon-grid menu-icon"></i><span class="nav-text">Category</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{route('categories.index')}}">All Categories</a></li>
+                            {{-- <li><a href="./ui-alert.html">Alert</a></li>
+                            <li><a href="./ui-badge.html">Badge</a></li> --}}
+                         </ul>
+                    </li> 
+                    <li class="nav-label ">Home Section</li>
                     <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i style="color: deepskyblue" class="icon-grid menu-icon"></i><span class="nav-text">Home</span>

@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Role;
 use App\User;
+use App\Category;
 use Illuminate\Http\Request;
-use App\Http\Requests\AdminUsersRequest;
+use Illuminate\Support\Facades\Auth;
 
-class AdminUsersController extends Controller
+class AdminCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,11 @@ class AdminUsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(5);
+        $categories = Category::all();
 
-        return view('admin.users.index', compact('users'));
+        // $catUser = User::pluck('name', 'id')->all();
+
+        return view('admin.categories.index', compact('categories'));
     }
 
     /**
@@ -28,9 +29,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-    
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin.users.create', compact('roles'));
+        //
     }
 
     /**
@@ -39,21 +38,17 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminUsersRequest $request)
+    public function store(Request $request)
     {
-        if(trim($request->password) == ''){
+        $this->validate($request, [
+            'name'=>'required'
+        ]);
 
-            $input = $request->except('password');
+        // return $request->all();
+        Category::create($request->all());
 
-        } else{
-            $input = $request->all();
-            $input['password']= bcrypt($request->password);
+        return redirect()->back();
 
-        }
-
-        User::create($input);
-
-        return redirect('/admin/users');
 
     }
 
@@ -76,9 +71,10 @@ class AdminUsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-        $roles = Role::pluck('name', 'id')->all();
-        return view('admin.users.edit', compact('user', 'roles'));
+        $user = Auth::user();
+
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -90,20 +86,13 @@ class AdminUsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user= User::findOrFail($id);
+        $category = Category::findOrFail($id);
 
-        if(trim($request->password) == ''){
+        $input = $request->all();
 
-            $input = $request->except('password');
+        $category->update($input);
 
-        } else{
-            $input = $request->all();
-            $input['password']= bcrypt($request->password);
-
-        }
-        $user->update($input);
-        // return $request->all();
-        return redirect('/admin/users');
+        return redirect('admin/categories');
     }
 
     /**
@@ -114,11 +103,9 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        $user = User::findOrFail($id); 
-        
-        return "it works";
-        // return view('admin.users.index');
+        $category = Category::findOrFail($id);
+        // return 'it works' ;
+        $category->delete();
+        return redirect('admin/categories');
     }
-
 }
-

@@ -19,7 +19,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('dashboard', 'AdminDashboardController@index');;
 
 
 Route::group(['frontend'], function(){
@@ -65,6 +64,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // ]]);
 
+
+
+Route::group(['middleware'=>'admin'], function(){
+
+Route::get('dashboard', 'AdminDashboardController@index');
+
+
 Route::resource('admin/users', 'AdminUsersController', ['names' =>[
     'index'=>'admin.users.index',
     'create'=>'admin.users.create',
@@ -84,3 +90,13 @@ Route::resource('admin/posts', 'AdminPostsController', ['names'=>[
     'delete'=>'admin.posts.delete',
 ]]);
 
+Route::resource('/admin/categories', 'AdminCategoriesController', ['name'=>[
+    'index'=>'admin.categories.index',
+    'create'=>'admin.categories.create',
+    'edit'=>'admin.categories.edit',
+    'delete'=>'admin.categories.delete',
+]]);
+
+    
+
+});

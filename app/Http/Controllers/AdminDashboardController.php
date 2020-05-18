@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
@@ -18,11 +19,12 @@ class AdminDashboardController extends Controller
     {
              $usersCount = User::count();
              $postCount = Post::count();
+             $categoryCount = Category::count();
         // $users = User::withCount(['id', 'name' => function (Builder $query){
         //     $query->where('id', 'name');
         // }])->get();
 
-        return view('admin.dashboard', compact('usersCount', 'postCount'));
+        return view('admin.dashboard', compact('usersCount', 'postCount', 'categoryCount'));
     }
 
     /**
